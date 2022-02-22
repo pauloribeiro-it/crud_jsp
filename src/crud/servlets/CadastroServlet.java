@@ -20,11 +20,12 @@ public class CadastroServlet extends HttpServlet{
 	private CadastroCarroDAO dao = new CadastroCarroMemoriaDAO();
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String marca = req.getParameter("marca");
 		String modelo = req.getParameter("modelo");
 		Integer ano = Integer.parseInt(req.getParameter("ano"));
 		String id = req.getParameter("id");
+		
 		boolean isCadastro = id == null || id.isEmpty();
 		if(isCadastro) {
 			Carro carro = new Carro(marca, modelo, ano);
@@ -33,7 +34,13 @@ public class CadastroServlet extends HttpServlet{
 			Carro carro = new Carro(Integer.parseInt(id),marca, modelo, ano);
 			this.dao.alteraCarro(carro);
 		}
-		
+		configuraAtributoSessao(req);
 		resp.sendRedirect("listagem");
+	}
+	
+	private void configuraAtributoSessao(HttpServletRequest request) {
+		if(request.getSession().getAttribute("timestamp") == null) {
+			request.getSession().setAttribute("timestamp", System.currentTimeMillis());
+		}
 	}
 }

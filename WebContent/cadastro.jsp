@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%Carro carro = (Carro) request.getAttribute("carro"); %>
-	<form method="POST" action="cadastro">
+	<form method="get" action="cadastro">
 		<input type="hidden" value="<%=carro != null?carro.getId():"" %>" id="id" name="id">
 		<table style="margin-left: 40%;">
 			<thead>
@@ -41,5 +41,7 @@
 			</tbody>
 		</table>											
 	</form>
+	
+	<h3>Atributo da sessão: <%=request.getSession().getAttribute("timestamp") %></h3>
 </body>
 </html>
