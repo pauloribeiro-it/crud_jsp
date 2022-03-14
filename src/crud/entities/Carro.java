@@ -1,12 +1,16 @@
 package crud.entities;
 
+import java.util.List;
+
 public class Carro {
 
 	private Integer id;
-	private String marca;
 	private String modelo;
 	private Integer ano;
-
+	private MarcasEnum marca;
+	private List<String> opcionais;
+	private Boolean isAutomatico;
+	
 	private static int ID = 1;
 	
 	public Carro(Integer id){
@@ -14,17 +18,21 @@ public class Carro {
 	}
 	
 	
-	public Carro(Integer id, String marca, String modelo, Integer ano) {
+	public Carro(Integer id, MarcasEnum marca, String modelo, Integer ano, List<String> opcionais, Boolean isAutomatico) {
 		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
+		this.opcionais = opcionais;
+		this.isAutomatico = isAutomatico;
 	}
 
-	public Carro(String marca, String modelo, Integer ano) {
+	public Carro(MarcasEnum marca, String modelo, Integer ano, List<String> opcionais, Boolean isAutomatico) {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
+		this.opcionais = opcionais;
+		this.isAutomatico = isAutomatico;
 	}
 
 	public Integer getId() {
@@ -35,11 +43,11 @@ public class Carro {
 		this.id = ID++;
 	}
 
-	public String getMarca() {
+	public MarcasEnum getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
+	public void setMarca(MarcasEnum marca) {
 		this.marca = marca;
 	}
 
@@ -57,6 +65,22 @@ public class Carro {
 
 	public void setAno(Integer ano) {
 		this.ano = ano;
+	}
+	
+	public List<String> getOpcionais() {
+		return opcionais;
+	}
+
+	public void setOpcionais(List<String> opcionais) {
+		this.opcionais = opcionais;
+	}
+	
+	public Boolean getIsAutomatico() {
+		return isAutomatico;
+	}
+
+	public void setIsAutomatico(Boolean isAutomatico) {
+		this.isAutomatico = isAutomatico;
 	}
 
 	@Override
